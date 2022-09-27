@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineMenu, AiOutlineClose, AiOutlineMail } from "react-icons/ai";
@@ -7,13 +7,34 @@ import { BsFillPersonLinesFill } from "react-icons/bs";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
+  const [shadow, setShadow] = useState(false);
+
+  useEffect(() => {
+    const handleShadow = () => {
+      if (window.scrollY >= 90) {
+        setShadow(true);
+      } else {
+        setShadow(false);
+      }
+    };
+
+    const listener = window.addEventListener("scroll", handleShadow);
+
+    return () => window.removeEventListener("scroll", listener);
+  }, []);
 
   const handleNav = () => {
     setNav(!nav);
   };
 
   return (
-    <div className='fixed w-full h-20 shadow-xl z-[100]'>
+    <div
+      className={
+        shadow
+          ? "fixed w-full h-20 shadow-xl z-[100]"
+          : "fixed w-full h-20 z-[100]"
+      }
+    >
       <div className='flex justify-between items-center w-full h-full px-2 2xl:px-16'>
         <Image
           src='/../public/assets/navLogo.png'
@@ -27,7 +48,7 @@ const Navbar = () => {
             <NavbarItem href='/'>About</NavbarItem>
             <NavbarItem href='/'>Skills</NavbarItem>
             <NavbarItem href='/'>Projects</NavbarItem>
-            <NavbarItem href='/'>Content</NavbarItem>
+            <NavbarItem href='/'>Contact</NavbarItem>
           </ul>
           <div onClick={handleNav} className='md:hidden'>
             <AiOutlineMenu size={25} />
@@ -83,7 +104,7 @@ const Navbar = () => {
                 <li className='py-4 text-sm'>Projects</li>
               </Link>
               <Link href='/'>
-                <li className='py-4 text-sm'>Content</li>
+                <li className='py-4 text-sm'>Contact</li>
               </Link>
             </ul>
             <div className='pt-40'>
