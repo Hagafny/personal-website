@@ -8,7 +8,7 @@ import twitchImg from "../public/assets/projects/twitch.jpg";
 
 const Projects = () => {
   return (
-    <div className='w-full'>
+    <div id='projects' className='w-full'>
       <div className='max-w-[1240px] mx-auto px-2 py-16'>
         <p className='text-xl tracking-widest uppercase text-[#5651e5]'>
           Projects
@@ -57,7 +57,7 @@ const ProjectItem = ({ title, backgroundImage, projectURL }) => {
           {title}
         </h3>
         <p className='pb-4 pt-2 text-white text-center'>React JS</p>
-        <Link href={projectURL}>
+        <Link href={`project/${projectURL}`}>
           <p className='text-center py-3 rounded-lg bg-white text-gray-700 font-bold text-lg cursor-pointer'>
             More Info
           </p>
