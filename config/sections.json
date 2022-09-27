@@ -1,0 +1,36 @@
+[
+  {
+    "name": "Main",
+    "title": "Home",
+    "url": "/",
+    "active": true
+  },
+  {
+    "name": "About",
+    "url": "/#about",
+    "active": true
+  },
+  {
+    "name": "Skills",
+    "url": "/#skills",
+    "active": true
+  },
+
+  {
+    "name": "Projects",
+    "url": "/#projects",
+    "active": true
+  },
+
+  {
+    "name": "Resume",
+    "url": "/resume",
+    "active": true
+  },
+
+  {
+    "name": "Contact",
+    "url": "/contact",
+    "active": true
+  }
+]

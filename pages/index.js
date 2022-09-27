@@ -3,9 +3,19 @@ import About from "../components/About";
 import Contact from "../components/Contact";
 import Main from "../components/Main";
 import Projects from "../components/Projects";
-import Skills from "../components/Skills";
+import Skills from "../components/Skills/Skills";
+import { SECTION_NAMES } from "../config/sections";
+import sections from "../config/sections.json";
 
-export default function Home() {
+const homeComponents = {
+  [SECTION_NAMES.MAIN]: Main,
+  [SECTION_NAMES.ABOUT]: About,
+  [SECTION_NAMES.SKILLS]: Skills,
+  [SECTION_NAMES.PROJECTS]: Projects,
+  [SECTION_NAMES.CONTACT]: Contact,
+};
+
+export default function Home({ sections }) {
   return (
     <div>
       <Head>
@@ -16,11 +26,23 @@ export default function Home() {
         />
         <link rel='icon' href='/fav.png' />
       </Head>
-      <Main />
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
+
+      {sections
+        .filter((section) => homeComponents[section.name])
+        .map((section) => {
+          const Component = homeComponents[section.name];
+          return <Component key={section.name} />;
+        })}
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const homePageSections = sections.filter((section) => section.active);
+
+  return {
+    props: {
+      sections: homePageSections,
+    },
+  };
 }

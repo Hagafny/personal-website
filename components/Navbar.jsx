@@ -6,6 +6,7 @@ import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { BsFillPersonLinesFill } from "react-icons/bs";
 import { useRouter } from "next/router";
 import NavLogo from "../public/assets/navLogo.png";
+import sections from "../config/sections.json";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -13,6 +14,8 @@ const Navbar = () => {
   const [navBg, setNavBg] = useState("#ecf0f3");
   const [linkColor, setLinkColor] = useState("#1f2937");
   const router = useRouter();
+
+  const navSections = sections.filter((section) => section.active);
 
   useEffect(() => {
     if (
@@ -67,24 +70,14 @@ const Navbar = () => {
         </Link>
         <div>
           <ul style={{ color: `${linkColor}` }} className='hidden md:flex'>
-            <li className='ml-10 text-sm uppercase hover:border-b'>
-              <Link href='/'>Home</Link>
-            </li>
-            <li className='ml-10 text-sm uppercase hover:border-b'>
-              <Link href='/#about'>About</Link>
-            </li>
-            <li className='ml-10 text-sm uppercase hover:border-b'>
-              <Link href='/#skills'>Skills</Link>
-            </li>
-            <li className='ml-10 text-sm uppercase hover:border-b'>
-              <Link href='/#projects'>Projects</Link>
-            </li>
-            <li className='ml-10 text-sm uppercase hover:border-b'>
-              <Link href='/resume'>Resume</Link>
-            </li>
-            <li className='ml-10 text-sm uppercase hover:border-b'>
-              <Link href='/#contact'>Contact</Link>
-            </li>
+            {navSections.map((section) => (
+              <li
+                key={section.name}
+                className='ml-10 text-sm uppercase hover:border-b'
+              >
+                <Link href={section.url}>{section.title || section.name}</Link>
+              </li>
+            ))}
           </ul>
           {/* Hamburger Icon */}
           <div
@@ -116,7 +109,7 @@ const Navbar = () => {
             <div className='flex w-full items-center justify-between'>
               <Link href='/'>
                 <a>
-                  <Image src={NavLogo} width='87' height='35' alt='/' />
+                  <Image src={NavLogo} width='87' height='35' alt='Logo' />
                 </a>
               </Link>
               <div
@@ -134,36 +127,13 @@ const Navbar = () => {
           </div>
           <div className='py-4 flex flex-col'>
             <ul className='uppercase'>
-              <Link href='/'>
-                <li onClick={() => setNav(false)} className='py-4 text-sm'>
-                  Home
-                </li>
-              </Link>
-              <Link href='/#about'>
-                <li onClick={() => setNav(false)} className='py-4 text-sm'>
-                  About
-                </li>
-              </Link>
-              <Link href='/#skills'>
-                <li onClick={() => setNav(false)} className='py-4 text-sm'>
-                  Skills
-                </li>
-              </Link>
-              <Link href='/#projects'>
-                <li onClick={() => setNav(false)} className='py-4 text-sm'>
-                  Projects
-                </li>
-              </Link>
-              <Link href='/resume'>
-                <li onClick={() => setNav(false)} className='py-4 text-sm'>
-                  Resume
-                </li>
-              </Link>
-              <Link href='/#contact'>
-                <li onClick={() => setNav(false)} className='py-4 text-sm'>
-                  Contact
-                </li>
-              </Link>
+              {navSections.map((section) => (
+                <Link key={section.name} href={section.url}>
+                  <li onClick={() => setNav(false)} className='py-4 text-sm'>
+                    {section.title || section.name}
+                  </li>
+                </Link>
+              ))}
             </ul>
             <div className='pt-40'>
               <p className='uppercase tracking-widest text-main'>
