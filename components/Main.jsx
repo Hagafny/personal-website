@@ -1,10 +1,9 @@
-import Link from "next/link";
 import React from "react";
-import { AiOutlineMail } from "react-icons/ai";
-import { BsFillPersonLinesFill } from "react-icons/bs";
-import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { useSocials } from "../hooks/useSocials";
 
 const Main = () => {
+  const socials = useSocials();
+
   return (
     <div id='home' className='w-full h-screen text-center'>
       <div className='max-w-[1240px] w-full h-full mx-auto p-2li flex justify-center items-center'>
@@ -18,34 +17,7 @@ const Main = () => {
             learning back-end technologies.
           </p>
           <div className='flex items-center justify-between max-w-[330px] m-auto py-4'>
-            <a
-              href='https://www.linkedin.com/in/ron-hagafny-ab116147/'
-              target='_blank'
-              rel='noreferrer'
-            >
-              <div className='rounded-full shadow-lg shadow-gray-400 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
-                <FaLinkedinIn />
-              </div>
-            </a>
-            <a
-              href='https://github.com/fireclint'
-              target='_blank'
-              rel='noreferrer'
-            >
-              <div className='rounded-full shadow-lg shadow-gray-400 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
-                <FaGithub />
-              </div>
-            </a>
-            <Link href='/#contact'>
-              <div className='rounded-full shadow-lg shadow-gray-400 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
-                <AiOutlineMail />
-              </div>
-            </Link>
-            <Link href='/resume'>
-              <div className='rounded-full shadow-lg shadow-gray-400 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
-                <BsFillPersonLinesFill />
-              </div>
-            </Link>
+            {socials}
           </div>
         </div>
       </div>
