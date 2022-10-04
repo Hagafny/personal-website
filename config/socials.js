@@ -49,7 +49,7 @@ export const SOCIAL_MEDIA_INFO = {
   },
 };
 
-export const SocialItem = ({ url, Logo, type }) => {
+export const SocialItem = ({ url, Logo, type, className }) => {
   const OuterRefContainer = ({ url, children }) => (
     <a href={url} target='_blank' rel='noreferrer'>
       {children}
@@ -63,7 +63,7 @@ export const SocialItem = ({ url, Logo, type }) => {
 
   return (
     <Container url={url}>
-      <div className='rounded-full shadow-lg shadow-gray-400 p-6 cursor-pointer hover:scale-110 ease-in duration-300'>
+      <div className={className}>
         <Logo />
       </div>
     </Container>

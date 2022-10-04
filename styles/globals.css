@@ -10,6 +10,10 @@ html {
 }
 
 @layer base {
+  html.dark body {
+    @apply bg-text text-bg tracking-wide;
+  }
+
   body {
     @apply bg-bg text-text tracking-wide;
   }
@@ -35,7 +39,7 @@ html {
     @apply cursor-pointer;
   }
 
-  button {
+  button:not(.theme-toggler) {
     @apply shadow-xl shadow-gray-400 rounded-xl uppercase bg-gradient-to-r from-main to-main-light text-white;
   }
 }

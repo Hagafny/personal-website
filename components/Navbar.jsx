@@ -7,30 +7,45 @@ import { BsFillPersonLinesFill } from "react-icons/bs";
 import { useRouter } from "next/router";
 import NavLogo from "../public/assets/navLogo.png";
 import sections from "../config/sections.json";
+import ThemeToggler from "./ThemeToggler";
+import { useTheme } from "next-themes";
+import { useSocials } from "../hooks/useSocials";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [shadow, setShadow] = useState(false);
   const [navBg, setNavBg] = useState("#ecf0f3");
   const [linkColor, setLinkColor] = useState("#1f2937");
+  const { theme } = useTheme();
   const router = useRouter();
 
   const navSections = sections.filter((section) => section.active);
 
+  const socials = useSocials({
+    className:
+      "rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300",
+  });
+
   useEffect(() => {
-    if (
-      router.asPath === "/property" ||
-      router.asPath === "/crypto" ||
-      router.asPath === "/netflix" ||
-      router.asPath === "/twitch"
-    ) {
-      setNavBg("transparent");
-      setLinkColor("#ecf0f3");
-    } else {
-      setNavBg("#ecf0f3");
-      setLinkColor("#1f2937");
-    }
-  }, [router]);
+    const isInProjectPage =
+      router.asPath === "/project/property" ||
+      router.asPath === "/project/crypto" ||
+      router.asPath === "/project/netflix" ||
+      router.asPath === "/project/twitch";
+
+    const isDarkMode = theme === "dark";
+
+    const navBG = isInProjectPage
+      ? "transparent"
+      : isDarkMode
+      ? "#1f2937"
+      : "#ecf0f3";
+
+    const linkColor = isInProjectPage || isDarkMode ? "#ecf0f3" : "#070707";
+
+    setNavBg(navBG);
+    setLinkColor(linkColor);
+  }, [router, theme]);
 
   const handleNav = () => {
     setNav(!nav);
@@ -69,7 +84,10 @@ const Navbar = () => {
           </a>
         </Link>
         <div>
-          <ul style={{ color: `${linkColor}` }} className='hidden md:flex'>
+          <ul
+            style={{ color: `${linkColor}` }}
+            className='hidden md:flex items-center'
+          >
             {navSections.map((section) => (
               <li
                 key={section.name}
@@ -78,6 +96,9 @@ const Navbar = () => {
                 <Link href={section.url}>{section.title || section.name}</Link>
               </li>
             ))}
+            <li className='ml-10'>
+              <ThemeToggler />
+            </li>
           </ul>
           {/* Hamburger Icon */}
           <div
@@ -101,7 +122,7 @@ const Navbar = () => {
         <div
           className={
             nav
-              ? " fixed left-0 top-0 w-[75%] sm:w-[60%] md:w-[45%] h-screen bg-[#ecf0f3] p-10 ease-in duration-500"
+              ? " fixed left-0 top-0 w-[75%] sm:w-[60%] md:w-[45%] h-screen bg-[#ecf0f3] dark:bg-text p-10 ease-in duration-500"
               : "fixed left-[-100%] top-0 p-10 ease-in duration-500"
           }
         >
@@ -135,7 +156,11 @@ const Navbar = () => {
                 </Link>
               ))}
             </ul>
-            <div className='pt-40'>
+            <div className='flex justify-center items-center pt-10'>
+              <div className='mr-3'>Change Theme:</div>
+              <ThemeToggler />
+            </div>
+            <div className='pt-16'>
               <p className='uppercase tracking-widest text-main'>
                 Let&#39;s Connect
               </p>

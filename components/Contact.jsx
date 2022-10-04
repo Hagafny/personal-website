@@ -6,7 +6,10 @@ import { useSocials } from "../hooks/useSocials";
 import ContactImg from "../public/assets/contact.jpg";
 
 const Contact = () => {
-  const socials = useSocials();
+  const socials = useSocials({
+    className:
+      "rounded-full shadow-lg shadow-gray-400 p-6 cursor-pointer hover:scale-110 ease-in duration-300",
+  });
 
   return (
     <div id='contact' className='w-full lg:h-screen'>
