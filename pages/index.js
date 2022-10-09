@@ -2,7 +2,7 @@ import Head from "next/head";
 import About from "../components/About";
 import Contact from "../components/Contact";
 import Main from "../components/Main";
-import Projects from "../components/Projects";
+import ProjectsSection from "../components/ProjectsSection";
 import Skills from "../components/Skills/Skills";
 import { SECTION_NAMES } from "../config/sections";
 import sections from "../config/sections.json";
@@ -13,7 +13,7 @@ const homeComponents = {
   [SECTION_NAMES.MAIN]: Main,
   [SECTION_NAMES.ABOUT]: About,
   [SECTION_NAMES.SKILLS]: Skills,
-  [SECTION_NAMES.PROJECTS]: Projects,
+  [SECTION_NAMES.PROJECTS]: ProjectsSection,
   [SECTION_NAMES.CONTACT]: Contact,
 };
 

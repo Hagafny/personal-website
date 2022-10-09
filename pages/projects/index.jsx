@@ -4,7 +4,11 @@ import { createClient } from "contentful";
 import { entryToBlogPostData } from "../../styles/utils";
 
 const Projects = ({ projects }) => {
-  return <ProjectsGrid projects={projects} />;
+  return (
+    <div className='max-w-[1240px] mx-auto px-2 py-16'>
+      <ProjectsGrid projects={projects} />;
+    </div>
+  );
 };
 
 export async function getStaticProps() {
