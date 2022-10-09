@@ -6,6 +6,8 @@ import Projects from "../components/Projects";
 import Skills from "../components/Skills/Skills";
 import { SECTION_NAMES } from "../config/sections";
 import sections from "../config/sections.json";
+import { createClient } from "contentful";
+import { entryToBlogPostData } from "../styles/utils";
 
 const homeComponents = {
   [SECTION_NAMES.MAIN]: Main,
@@ -15,7 +17,7 @@ const homeComponents = {
   [SECTION_NAMES.CONTACT]: Contact,
 };
 
-export default function Home({ sections }) {
+export default function Home({ sections, projects }) {
   return (
     <div>
       <Head>
@@ -31,6 +33,10 @@ export default function Home({ sections }) {
         .filter((section) => homeComponents[section.name])
         .map((section) => {
           const Component = homeComponents[section.name];
+
+          if (section.name === SECTION_NAMES.PROJECTS) {
+            return <Component key={section.name} projects={projects} />;
+          }
           return <Component key={section.name} />;
         })}
     </div>
@@ -40,9 +46,19 @@ export default function Home({ sections }) {
 export async function getStaticProps() {
   const homePageSections = sections.filter((section) => section.active);
 
+  const client = createClient({
+    space: process.env.CONTENTFUL_SPACE_ID,
+    accessToken: process.env.CONTENTFUL_ACCESS_KEY,
+  });
+
+  const resEntries = await client.getEntries({ content_type: "blogPost" });
+
+  const formattedProjects = resEntries.items.map(entryToBlogPostData);
+
   return {
     props: {
       sections: homePageSections,
+      projects: formattedProjects,
     },
   };
 }
