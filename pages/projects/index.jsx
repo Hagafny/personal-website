@@ -1,9 +1,9 @@
 import React from "react";
 import ProjectsGrid from "../../components/Projects";
 import { createClient } from "contentful";
+import { entryToBlogPostData } from "../../styles/utils";
 
 const Projects = ({ projects }) => {
-  console.log(projects);
   return <ProjectsGrid projects={projects} />;
 };
 
@@ -14,19 +14,8 @@ export async function getStaticProps() {
   });
 
   const resEntries = await client.getEntries({ content_type: "blogPost" });
-  console.log(resEntries);
 
-  const formattedProjects = resEntries.items.map((item) => {
-    const {
-      fields: { title, slug, featured },
-    } = item;
-
-    return {
-      title,
-      slug,
-      featured: `https://${featured.fields.file.url}`,
-    };
-  });
+  const formattedProjects = resEntries.items.map(entryToBlogPostData);
 
   return {
     props: {
