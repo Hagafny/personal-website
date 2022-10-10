@@ -14,9 +14,9 @@ const Main = () => {
     return (
       <div
         key={socialMediaData.url}
-        className={`animate-[slideIn_0.5s_linear_both] fill`}
+        className={`animate-[slideIn_0.5s_linear_both]`}
         style={{
-          animationDelay: `${2.9 + (i + 1) * 0.2}s`,
+          animationDelay: `${3 + (i + 1) * 0.2}s`,
         }}
       >
         <SocialItem
