@@ -9,7 +9,7 @@ import NavLogo from "../public/assets/navLogo.png";
 import sections from "../config/sections.json";
 import ThemeToggler from "./ThemeToggler";
 import { useTheme } from "next-themes";
-import { useSocials } from "../hooks/useSocials";
+import { useSocialsData } from "../hooks/useSocials";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -21,10 +21,12 @@ const Navbar = () => {
 
   const navSections = sections.filter((section) => section.active);
 
-  const socials = useSocials({
-    className:
-      "rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300",
-  });
+  const socialsData = useSocialsData();
+
+  // {
+  //   className:
+  //     "rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300",
+  // }
 
   useEffect(() => {
     const isInProjectPage =

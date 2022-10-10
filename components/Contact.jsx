@@ -2,14 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { HiOutlineChevronDoubleUp } from "react-icons/hi";
-import { useSocials } from "../hooks/useSocials";
+import { useSocialsData } from "../hooks/useSocials";
 import ContactImg from "../public/assets/contact.jpg";
 
 const Contact = () => {
-  const socials = useSocials({
-    className:
-      "rounded-full shadow-lg shadow-gray-400 p-6 cursor-pointer hover:scale-110 ease-in duration-300",
-  });
+  const socialsData = useSocialsData();
+
+  //     className:
+  //     "rounded-full shadow-lg shadow-gray-400 p-6 cursor-pointer hover:scale-110 ease-in duration-300",
+  // }
 
   return (
     <div id='contact' className='w-full lg:h-screen'>
@@ -37,7 +38,7 @@ const Contact = () => {
               <div>
                 <p className='uppercase pt-8'>Connect With Me</p>
                 <div className='flex items-center justify-between py-4'>
-                  {socials}
+                  {/* {socials} */}
                 </div>
               </div>
             </div>
