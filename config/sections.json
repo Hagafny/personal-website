@@ -27,7 +27,11 @@
     "url": "/resume",
     "active": false
   },
-
+  {
+    "name": "Proof of Talk",
+    "url": "/proof_of_talk",
+    "active": true
+  },
   {
     "name": "Contact",
     "url": "/#contact",
