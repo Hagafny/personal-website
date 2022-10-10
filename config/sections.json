@@ -11,6 +11,11 @@
     "active": true
   },
   {
+    "name": "Talks",
+    "url": "/talks",
+    "active": true
+  },
+  {
     "name": "Skills",
     "url": "/#skills",
     "active": false
