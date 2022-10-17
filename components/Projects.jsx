@@ -9,7 +9,7 @@ const Projects = ({ projects = [] }) => {
           <ProjectItem
             key={slug}
             title={title}
-            projectUrl={`/${slug}`}
+            projectUrl={`projects/${slug}`}
             subtitle={subtitle}
             backgroundImg={featured.src}
             height={featured.height}

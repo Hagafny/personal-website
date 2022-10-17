@@ -1,10 +1,10 @@
 import React from "react";
-import ProjectPage from "../../components/Project";
+import TalkPage from "../../components/Talk";
 import CmsService from "../../services/cms/cmsService";
 import { CONTENT_MODELS } from "../../services/cms/mappers";
 
 export const getStaticPaths = async () => {
-  const paths = await new CmsService(CONTENT_MODELS.BLOG_POST).getPaths();
+  const paths = await new CmsService(CONTENT_MODELS.TALK).getPaths();
 
   return {
     paths,
@@ -13,12 +13,12 @@ export const getStaticPaths = async () => {
 };
 
 export async function getStaticProps({ params: { slug } }) {
-  const post = await new CmsService(CONTENT_MODELS.BLOG_POST).getEntity(slug);
+  const post = await new CmsService(CONTENT_MODELS.TALK).getEntity(slug);
   return {
     props: { post },
   };
 }
 
 export default function Project({ post }) {
-  return <ProjectPage {...post.fields} />;
+  return <TalkPage {...post.fields} />;
 }

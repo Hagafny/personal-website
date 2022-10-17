@@ -1,7 +1,7 @@
 import React from "react";
-import ProjectItem from "../components/ProjectItem";
-import cmsService from "../services/cms/cmsService";
-import { CONTENT_MODELS } from "../services/cms/mappers";
+import ProjectItem from "../../components/ProjectItem";
+import cmsService from "../../services/cms/cmsService";
+import { CONTENT_MODELS } from "../../services/cms/mappers";
 
 const Talks = ({ talks = [] }) => {
   return (
@@ -12,7 +12,7 @@ const Talks = ({ talks = [] }) => {
             <ProjectItem
               key={slug}
               title={title}
-              projectUrl={`/${slug}`}
+              projectUrl={`talks/${slug}`}
               subtitle={subtitle}
               backgroundImg={featured.src}
               height={featured.height}
