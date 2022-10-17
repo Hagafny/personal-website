@@ -6,8 +6,8 @@ import ProjectsSection from "../components/ProjectsSection";
 import Skills from "../components/Skills/Skills";
 import { SECTION_NAMES } from "../config/sections";
 import sections from "../config/sections.json";
-import { createClient } from "contentful";
-import cmsService from "../services/cms/cmsService";
+import CmsService from "../services/cms/cmsService";
+import { CONTENT_MODELS } from "../services/cms/mappers";
 
 const homeComponents = {
   [SECTION_NAMES.MAIN]: Main,
@@ -45,7 +45,7 @@ export default function Home({ sections, projects }) {
 
 export async function getStaticProps() {
   const homePageSections = sections.filter((section) => section.active);
-  const projects = await cmsService.getProjects();
+  const projects = await new CmsService(CONTENT_MODELS.BLOG_POST).getAll();
 
   return {
     props: {

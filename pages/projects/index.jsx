@@ -1,6 +1,7 @@
 import React from "react";
 import ProjectsGrid from "../../components/Projects";
-import cmsService from "../../services/cms/cmsService";
+import CmsService from "../../services/cms/cmsService";
+import { CONTENT_MODELS } from "../../services/cms/mappers";
 
 const Projects = ({ projects }) => {
   return (
@@ -11,7 +12,8 @@ const Projects = ({ projects }) => {
 };
 
 export async function getStaticProps() {
-  const projects = await cmsService.getProjects();
+  const projectsCMS = new CmsService(CONTENT_MODELS.BLOG_POST);
+  const projects = await projectsCMS.getAll();
 
   return {
     props: {

@@ -1,6 +1,7 @@
 import React from "react";
 import ProjectItem from "../components/ProjectItem";
 import cmsService from "../services/cms/cmsService";
+import { CONTENT_MODELS } from "../services/cms/mappers";
 
 const Talks = ({ talks = [] }) => {
   return (
@@ -25,7 +26,7 @@ const Talks = ({ talks = [] }) => {
 };
 
 export async function getStaticProps() {
-  const talks = await cmsService.getTalks();
+  const talks = await new cmsService(CONTENT_MODELS.TALK).getAll();
 
   return {
     props: {
