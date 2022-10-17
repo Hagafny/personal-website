@@ -14,6 +14,7 @@ module.exports = {
         },
         text: "#1f2937",
         bg: "#ecf0f3",
+        grayBG: "#2e3039",
       },
       keyframes: {
         wave: {
